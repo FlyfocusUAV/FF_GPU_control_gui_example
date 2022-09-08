@@ -6,7 +6,7 @@
 
 Simple PyQt5 GUI that demonstrates UDP over Ethernet data exchange between Flyfocus Tethered Ground Power Supply and a PC. It supports all possible data frames used by the standard GPU.
 
-![GUI screen shot](gui.ss.png)
+![GUI screen shot](gui_ss.png)
 
 <br>
 
