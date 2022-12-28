@@ -76,10 +76,29 @@ def callbackTensionSetButton():
     #print(TNS_SET_MESSAGE)
     sock.sendto(TNS_SET_MESSAGE.encode(), (UDP_IP, UDP_PORT))
 
+def callbackTensionZeroButton():
+    global ui
+    val = 0
+    TNS_SET_MESSAGE = "#TNS" + str(val).zfill(4) + '\r'
+    #print(TNS_SET_MESSAGE)
+    sock.sendto(TNS_SET_MESSAGE.encode(), (UDP_IP, UDP_PORT))
+
+def callbackBrakeOnButton():
+    global ui
+    sock.sendto(BRAKE_ON_MESSAGE.encode(), (UDP_IP, UDP_PORT))
+
+def callbackBrakeOffButton():
+    global ui
+    sock.sendto(BRAKE_OFF_MESSAGE.encode(), (UDP_IP, UDP_PORT))
+
+
 def initialSetup(ui):
     ui.OnSetButton.clicked.connect(callbackOnButton)
     ui.OffSetButton.clicked.connect(callbackOffButton)
     ui.TensionSetButton.clicked.connect(callbackTensionSetButton)
+    ui.TensionZeroButton.clicked.connect(callbackTensionZeroButton)
+    ui.BrakeOnButton.clicked.connect(callbackBrakeOnButton)
+    ui.BrakeOffButton.clicked.connect(callbackBrakeOffButton)
 
 
 if __name__ == "__main__":
@@ -97,6 +116,8 @@ if __name__ == "__main__":
     REQUEST_MESSAGE = "#RQ\r"
     ON_MESSAGE = "#ON\r"
     OFF_MESSAGE = "#OFF\r"
+    BRAKE_ON_MESSAGE = "#B_ON\r"
+    BRAKE_OFF_MESSAGE = "#B_OFF\r"
     print("UDP target IP: %s" % UDP_IP)
     print("UDP target port: %s" % UDP_PORT)
     print("Request message: %s" % REQUEST_MESSAGE)
